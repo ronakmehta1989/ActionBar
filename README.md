@@ -8,6 +8,8 @@ The action bar component is an [Library Project](http://developer.android.com/to
 
 Need icons to your action bar? [Official Android icons library](http://developer.android.com/design/downloads/index.html).
 
+Be careful! It's beta release! I don't know, why actions in actionbar didn't happend! Please, help me!
+
 ## Usage
 
 ### In your layout
