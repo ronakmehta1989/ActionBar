@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="actionbar_listener_unimplemented">This Activity does not implement OnActionClickListener.</string>
+    <string name="actionbar_listener_error">The OnActionClickListener was not instantiated properly.</string>
+    <string name="actionbar_search_error">OnSearchRequested() could not be called for your Activity.</string>
+    <string name="app_name">ActionBarExtended</string>
+    <string name="actionbar_activity_not_found">ERROR: Activity not found!</string>
+</resources>

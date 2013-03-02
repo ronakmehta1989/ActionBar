@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    <com.actionbar.ActionBar
+        android:id="@+id/actionbar"
+        style="@style/ActionBar"
+        />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="vertical"
+	        android:layout_marginTop="20dip">
+			<TextView
+				android:layout_width="fill_parent" 
+				android:layout_height="wrap_content" 
+				android:text="Home activity" 
+			/>
+	        <Button
+	            android:id="@+id/start_progress"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            style="@style/Button"
+	            android:text="Start Progress" />
+	        <Button
+	            android:id="@+id/stop_progress"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" 
+	            style="@style/Button"
+	            android:text="Stop Progress" />
+	        <Button
+	            android:id="@+id/remove_actions"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" 
+	            style="@style/Button"
+	            android:text="Clear actionbar" />
+	        <Button
+	            android:id="@+id/add_action"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" 
+	            style="@style/Button"
+	            android:text="Add action" />
+	        <Button
+	            android:id="@+id/remove_action"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" 
+	            style="@style/Button"
+	            android:text="Remove action" />
+	        <Button
+	            android:id="@+id/remove_share_action"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content" 
+	            style="@style/Button"
+	            android:text="Remove share action" />
+			<Button
+				android:id="@+id/add_search_action"
+				android:layout_width="wrap_content"
+				android:text="Add Search Action"
+	            style="@style/Button"
+				android:layout_height="wrap_content" />
+			<Button
+				android:id="@+id/add_dialog_action"
+				android:layout_width="wrap_content"
+				android:text="Add Dialog Action"
+	            style="@style/Button"
+				android:layout_height="wrap_content" />
+			<Button
+				android:id="@+id/add_inter_action"
+				android:layout_width="wrap_content"
+				android:text="Add Interface Action"
+	            style="@style/Button"
+				android:layout_height="wrap_content" />
+	    </LinearLayout>
+    </ScrollView>
+</LinearLayout>

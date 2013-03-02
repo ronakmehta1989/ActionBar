@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ActionBarExtended</string>
+    <string name="actionbar_activity_not_found">ОШИБКА: Activity не найдена!</string>
+</resources>
