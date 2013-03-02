@@ -4,7 +4,7 @@ This projects aims to provide a reusable action bar component. The action bar pa
 
 The action bar component is an [Library Project](http://developer.android.com/guide/developing/eclipse-adt.html#libraryProject). This means that there's no need to copy-paste resources into your own project, simply add the action bar component as a reference to any project.
 
-Need icons to your action bar? Olof Brickarp has ported some of [Androids native icons to vector format](http://www.yay.se/2011/02/native-android-icons-in-vector-format/).
+Need icons to your action bar? [Official Android icons library](http://developer.android.com/design/downloads/index.html).
 
 ## Usage
 
