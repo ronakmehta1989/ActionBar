@@ -2,7 +2,7 @@
 
 This projects aims to provide a reusable action bar component. The action bar pattern is well documented at [Android Patterns](http://www.androidpatterns.com/uap_pattern/action-bar).
 
-The action bar component is an [Library Project](http://developer.android.com/guide/developing/eclipse-adt.html#libraryProject). This means that there's no need to copy-paste resources into your own project, simply add the action bar component as a reference to any project.
+The action bar component is an [Library Project](http://developer.android.com/tools/projects/projects-eclipse.html). This means that there's no need to copy-paste resources into your own project, simply add the action bar component as a reference to any project.
 
 Need icons to your action bar? [Official Android icons library](http://developer.android.com/design/downloads/index.html).
 
