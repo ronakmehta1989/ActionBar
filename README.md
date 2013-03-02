@@ -40,6 +40,25 @@ ActionBar comes with a convenient IntentAction that makes it easy to create acti
             Toast.makeText(OtherActivity.this,
                     "Example action", Toast.LENGTH_SHORT).show();
         }
+        
+        public View onInflateView(ActionBar actionBar, View view)
+	{
+		ImageButton labelView = (ImageButton) view.findViewById(R.id.actionbar_item);
+		labelView.setImageResource(this.getDrawable());
+		if (actionBar instanceof ActionPlus)
+		{
+			labelView.setLongClickable(true);
+			labelView.setOnLongClickListener(actionBar);
+		}
+		labelView.setImageResource(this.getDrawable());
+		view.setTag(actionBar);
+		view.setOnClickListener(actionBar);
+		return view;
+	}
+	public int getLayoutResId()
+	{
+		return R.layout.actionbar_item;
+	}
 
     }
 
@@ -55,11 +74,11 @@ To handle on clicks on the title pass a `android.view.View.OnClickListener` to t
 
 ### Customization
 
-You can change everything in this project.
+You can change everything in this project: java code, icons, colors, layouts...
 
 ## Is it stable?
 
-Yes it is, but there's no guarantees. The api however is still not stable so please check all commits since the last pull. It might also be an good idea to depend on your own fork instead of this component directly. Eventually there will be more controlled releases but until then.
+Partially, but there's no guarantees.
 
 ## Contributions
 
@@ -72,6 +91,7 @@ This widget wouldn't be the same without the excellent contributions by;
 * Jake Wharton, <https://github.com/JakeWharton>
 * Jesse Vincent, <http://blog.fsck.com>
 * Gyuri Grell, <http://gyurigrell.com>
+* Johan Nilsson, <https://github.com/johannilsson/android-actionbar>
 
 ### Want to contribute?
 
