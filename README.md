@@ -95,7 +95,7 @@ This widget wouldn't be the same without the excellent contributions by;
 
 ### Want to contribute?
 
-GitHub has some great articles on [how to get started with Git and GitHub](http://help.github.com/) and how to [fork a project](http://help.github.com/forking/).
+GitHub has some great articles on [how to get started with Git and GitHub](http://help.github.com/) and how to [fork a project](https://help.github.com/articles/fork-a-repo).
 
 Contributers are recommended to fork the app on GitHub (but don't have too). Create a feature branch, push the branch to git hub, press Pull Request and write a simple explanation.
 
