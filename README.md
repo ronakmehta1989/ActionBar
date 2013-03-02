@@ -2,6 +2,8 @@
 
 This projects aims to provide a reusable action bar component. The action bar pattern is well documented at [Android Patterns](http://www.androidpatterns.com/uap_pattern/action-bar).
 
+This is extended version of [Johan Nilsson's ActionBar](https://github.com/johannilsson/android-actionbar). Old repository didn't updates for a long time. I made a new one with cookies! :)
+
 The action bar component is an [Library Project](http://developer.android.com/tools/projects/projects-eclipse.html). This means that there's no need to copy-paste resources into your own project, simply add the action bar component as a reference to any project.
 
 Need icons to your action bar? [Official Android icons library](http://developer.android.com/design/downloads/index.html).
@@ -119,7 +121,7 @@ In short that is;
 Have fun and remember we do this in our spare time so don't be too serious :)
 
 ## License
-Copyright (c) 2012 STALKER_2010
+Copyright (c) 2012 STALKER_2010. Sorry for my bad English, I'm Russian.
 
 Copyright (c) 2010 [Johan Nilsson](http://markupartist.com)
 
