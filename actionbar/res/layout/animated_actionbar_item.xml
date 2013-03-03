@@ -17,7 +17,7 @@ limitations under the License.
 	android:id= "@+id/titleLayout"
 	android:background= "@drawable/actionbar_background" >
 	<ImageButton
-		android:id= "@+id/actionbar_item"
+		android:id= "@+id/actionbar_anim_item"
 		style= "@style/ActionBarItem"
 		android:background= "#00FFFFFF"
 		android:layout_centerVertical= "true"

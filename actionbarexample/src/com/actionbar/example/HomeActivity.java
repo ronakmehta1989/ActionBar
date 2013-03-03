@@ -14,6 +14,8 @@ import android.widget.Button;
 import com.actionbar.Toast;
 import android.app.*;
 import android.widget.*;
+import android.view.*;
+import android.content.*;
 
 public class HomeActivity extends Activity implements OnActionClickListener
 {
@@ -25,12 +27,12 @@ public class HomeActivity extends Activity implements OnActionClickListener
         setContentView(R.layout.main);
 
         final ActionBar actionBar = (ActionBar) findViewById(R.id.actionbar);
-        //actionBar.setHomeAction(new IntentAction(this, createIntent(this), R.drawable.ic_title_home_demo));
+		
         actionBar.setTitle("Title: Home");
 
-        final Action shareAction = new IntentAction(this, createShareIntent(), R.drawable.ic_title_share_default);
+        final Action shareAction = new IntentAction(this, createShareIntent(), R.drawable.ic_share);
         actionBar.addAction(shareAction);
-        final Action otherAction = new IntentAction(this, new Intent(this, OtherActivity.class), R.drawable.ic_title_export_default);
+        final Action otherAction = new IntentAction(this, new Intent(this, OtherActivity.class), R.drawable.ic_forward);
         actionBar.addAction(otherAction);
 
         Button startProgress = (Button) findViewById(R.id.start_progress);
@@ -66,26 +68,6 @@ public class HomeActivity extends Activity implements OnActionClickListener
 				public void onClick(View view)
 				{
 					actionBar.addAction(new Action() {
-							public View onInflateView(ActionBar actionBar, View view)
-							{
-								ImageButton labelView =
-									(ImageButton) view.findViewById(R.id.actionbar_item);
-								labelView.setImageResource(this.getDrawable());
-								if (actionBar instanceof ActionPlus)
-								{
-									labelView.setLongClickable(true);
-									labelView.setOnLongClickListener(actionBar);
-								}
-								labelView.setImageResource(this.getDrawable());
-								view.setTag(actionBar);
-								view.setOnClickListener(actionBar);
-								return view;
-							}
-							public int getLayoutResId()
-							{
-								// TODO: Implement this method
-								return R.layout.actionbar_item;
-							}
 							@Override
 							public void performAction(View view)
 							{
@@ -94,7 +76,7 @@ public class HomeActivity extends Activity implements OnActionClickListener
 							@Override
 							public int getDrawable()
 							{
-								return R.drawable.ic_title_share_default;
+								return R.drawable.ic_settings;
 							}
 						});
 				}
@@ -107,7 +89,6 @@ public class HomeActivity extends Activity implements OnActionClickListener
 				{
 					int actionCount = actionBar.getActionCount();
 					actionBar.removeActionAt(actionCount - 1);
-					Toast.makeText(HomeActivity.this, "Removed action" , Toast.LENGTH_SHORT).show();
 				}
 			});
 
@@ -143,6 +124,46 @@ public class HomeActivity extends Activity implements OnActionClickListener
 					actionBar.addAction(new InterfaceAction(HomeActivity.this, android.R.drawable.ic_menu_view));
 				}
 			});
+		Button setTitle = (Button) findViewById(R. id . set_title);
+		setTitle. setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view)
+				{
+					AlertDialog.Builder build = new AlertDialog.Builder(HomeActivity.this);
+					build.setTitle("Enter:");
+					LayoutInflater inflater = getLayoutInflater();
+					View dialoglayout = inflater.inflate(R.layout.title_alert, (ViewGroup) getCurrentFocus());
+					final EditText input = (EditText)dialoglayout.findViewById(R.id.new_title);
+					build.setView(dialoglayout);
+					build.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface p1, int p2)
+							{
+								actionBar.setTitle(input.getText().toString());
+							}
+					});
+					build.show();
+				}
+			});
+		Button setSubTitle = (Button) findViewById(R. id . set_subtitle);
+		setSubTitle. setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View view)
+				{
+					AlertDialog.Builder build = new AlertDialog.Builder(HomeActivity.this);
+					build.setTitle("Enter:");
+					LayoutInflater inflater = getLayoutInflater();
+					View dialoglayout = inflater.inflate(R.layout.title_alert, (ViewGroup) getCurrentFocus());
+					final EditText input = (EditText)dialoglayout.findViewById(R.id.new_title);
+					build.setView(dialoglayout);
+					build.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+							public void onClick(DialogInterface p1, int p2)
+							{
+								actionBar.setSubTitle(input.getText().toString());
+							}
+						});
+					build.show();
+				}
+			});
     }
 
     public static Intent createIntent(Context context)
@@ -156,7 +177,7 @@ public class HomeActivity extends Activity implements OnActionClickListener
 	{
         final Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, "Shared from the ActionBarExtended button.");
+        intent.putExtra(Intent.EXTRA_TEXT, "ActionBarExtended - small and easy framework for new design of Android apps! github.com/STALKER2010/ActionBar");
         return Intent.createChooser(intent, "Share");
     }
 	@Override
@@ -168,7 +189,7 @@ public class HomeActivity extends Activity implements OnActionClickListener
 	public Dialog onCreateDialog(int id)
 	{
 		AlertDialog. Builder b = new AlertDialog. Builder(this);
-		b. setMessage("The DialogAction has been received. Hit back to clear this dialog.")
+		b. setMessage("The DialogAction has been received. Hit back to hide this dialog.")
 			. setTitle("DialogAction");
 		return b. create();
 	}

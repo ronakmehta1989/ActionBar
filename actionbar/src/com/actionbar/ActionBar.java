@@ -38,8 +38,9 @@ import android.widget.TextView;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.app.Activity;
+import android.util.*;
 
-public class ActionBar extends RelativeLayout implements OnClickListener, View.OnLongClickListener
+public class ActionBar extends RelativeLayout implements OnClickListener,View.OnLongClickListener
 {
 
 	private LayoutInflater mInflater;
@@ -47,6 +48,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener, View.O
     private ImageView mLogoView;
     private View mBackIndicator;
     private TextView mTitleView;
+    private TextView mSubTitleView;
     private LinearLayout mActionsView;
     private ImageButton mHomeBtn;
     private RelativeLayout mHomeLayout;
@@ -67,6 +69,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener, View.O
         mHomeBtn = (ImageButton) mBarView.findViewById(R.id.actionbar_home_btn);
         mBackIndicator = mBarView.findViewById(R.id.actionbar_home_is_back);
         mTitleView = (TextView) mBarView.findViewById(R.id.actionbar_title);
+        mSubTitleView = (TextView) mBarView.findViewById(R.id.actionbar_subtitle);
         mActionsView = (LinearLayout) mBarView.findViewById(R.id.actionbar_actions);
         mProgress = (ProgressBar) mBarView.findViewById(R.id.actionbar_progress);
         TypedArray a = context.obtainStyledAttributes(attrs,
@@ -77,6 +80,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener, View.O
             setTitle(title);
         }
         a.recycle();
+		mSubTitleView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 0);
     }
 	/** Set home button action
      *
@@ -133,6 +137,45 @@ public class ActionBar extends RelativeLayout implements OnClickListener, View.O
     public void setTitle(int resid)
 	{
         mTitleView.setText(resid);
+    }
+
+	/** Set Action Bar subtitle
+     *
+     * @param title New title
+     */
+    public void setSubTitle(CharSequence title)
+	{
+		if (title.equals(""))
+		{
+			mSubTitleView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 0);
+			mSubTitleView.setText(" ");
+			mSubTitleView.setHeight(0);
+		}
+		else
+		{
+			mSubTitleView.setText(title);
+			mSubTitleView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+			mSubTitleView.setHeight(28);
+		}
+    }
+	/** Set Action Bar subtitle
+     *
+     * @param resId Resource ID of new title
+     */
+    public void setSubTitle(int resid)
+	{
+		if (resid == 0)
+		{
+			mSubTitleView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 0);
+			mSubTitleView.setText(" ");
+			mSubTitleView.setHeight(0);
+		}
+		else
+		{
+			mSubTitleView.setText(resid);
+			mSubTitleView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 12);
+			mSubTitleView.setHeight(28);
+		}
     }
     /**
      * Set the enabled state of the progress bar.
@@ -279,6 +322,10 @@ public class ActionBar extends RelativeLayout implements OnClickListener, View.O
 	{
         return mActionsView.getChildCount();
     }
+	/** On Long Click listener
+     *
+     * @param view Clicked view
+     */
 	@Override
 	public boolean onLongClick(View view)
 	{
@@ -298,7 +345,19 @@ public class ActionBar extends RelativeLayout implements OnClickListener, View.O
      */
 	private View inflateAction(Action action)
 	{
-		return action.onInflateView(this, mInflater.inflate(action.getLayoutResId(), mActionsView, false));
+		//Toast.makeText(getContext(),action.toString(),Toast.LENGTH_SHORT).show();
+		View view = mInflater.inflate(R.layout.actionbar_item, mActionsView, false);
+		ImageButton labelView =
+			(ImageButton) view.findViewById(R.id.actionbar_item);
+		labelView.setImageResource(action.getDrawable());
+		if (action instanceof ActionPlus)
+		{
+			labelView.setLongClickable(true);
+			labelView.setOnLongClickListener(this);
+		}
+		view.setTag(action);
+		view.setOnClickListener(this);
+		return view;
 	}
     /**
      * A {@link LinkedList} that holds a list of {@link Action}s.
@@ -314,10 +373,6 @@ public class ActionBar extends RelativeLayout implements OnClickListener, View.O
     public interface Action
 	{
         public int getDrawable();
-		/** Used to perform any special action once the {@link ActionBar} inflated our view */
-		public View onInflateView(ActionBar actionBar, View view);
-		/** The layout used to inflate a new view for the action */
-		public int getLayoutResId();
         public void performAction(View view);
     }
 	/** Action with long press listener
@@ -336,32 +391,11 @@ public class ActionBar extends RelativeLayout implements OnClickListener, View.O
 		{
             mDrawable = drawable;
         }
-		@Override
-		public View onInflateView(ActionBar action, View view)
-		{
-			ImageButton labelView =
-				(ImageButton) view.findViewById(R.id.actionbar_item);
-			labelView.setImageResource(this.getDrawable());
-			if (action instanceof ActionPlus)
-			{
-				labelView.setLongClickable(true);
-				labelView.setOnLongClickListener(action);
-			}
-			labelView.setImageResource(this.getDrawable());
-			view.setTag(action);
-			view.setOnClickListener(action);
-			return view;
-		}
         @Override
         public int getDrawable()
 		{
             return mDrawable;
         }
-		@Override
-		public int getLayoutResId()
-		{
-			return R.layout.actionbar_item;
-		}
     }
 	/** Action with intent
      */
@@ -505,6 +539,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener, View.O
 			try
 			{
 				mHost.onSearchRequested();
+				mHost.startSearch(null, false, null, false);
 			}
 			catch (Exception mnfe)
 			{
@@ -610,19 +645,4 @@ public class ActionBar extends RelativeLayout implements OnClickListener, View.O
 			return R. layout. animated_actionbar_item ;
 		}
 	}
-	/** Action with onClick listener
-     */
-	public static abstract class ButtonAction extends AbstractAction
-	{
-        public ButtonAction(int drawable)
-        {
-            super(drawable);
-        }
-        @Override
-        public void performAction(View v)
-        {
-            clicked();
-        }
-        public abstract void clicked();
-    }
 }

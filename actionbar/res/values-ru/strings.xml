@@ -2,4 +2,7 @@
 <resources>
     <string name="app_name">ActionBarExtended</string>
     <string name="actionbar_activity_not_found">ОШИБКА: Activity не найдена!</string>
+	<string name="actionbar_listener_unimplemented">Эта Activity не имплементирует OnActionClickListener.</string>
+    <string name="actionbar_listener_error">OnActionClickListener не был корректно установлен.</string>
+    <string name="actionbar_search_error">OnSearchRequested() не может быть вызван из вашей Activity.</string>
 </resources>

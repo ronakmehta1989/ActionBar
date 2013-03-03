@@ -1,10 +1,12 @@
-# Action Bar Extended version for Android
+# Action Bar Extended version for Android rev 1
 
 This projects aims to provide a reusable action bar component. The action bar pattern is well documented at [Android Patterns](http://www.androidpatterns.com/uap_pattern/action-bar).
 
-The action bar component is an [Library Project](http://developer.android.com/guide/developing/eclipse-adt.html#libraryProject). This means that there's no need to copy-paste resources into your own project, simply add the action bar component as a reference to any project.
+This is extended version of [Johan Nilsson's ActionBar](https://github.com/johannilsson/android-actionbar). Old repository didn't updates for a long time. I made a new one with cookies! :)
 
-Need icons to your action bar? Olof Brickarp has ported some of [Androids native icons to vector format](http://www.yay.se/2011/02/native-android-icons-in-vector-format/).
+The action bar component is an [Library Project](http://developer.android.com/tools/projects/projects-eclipse.html). This means that there's no need to copy-paste resources into your own project, simply add the action bar component as a reference to any project.
+
+Need icons to your action bar? [Official Android icons library](http://developer.android.com/design/downloads/index.html).
 
 ## Usage
 
@@ -21,8 +23,7 @@ Need icons to your action bar? Olof Brickarp has ported some of [Androids native
     // CharSequence or resource id.
     actionBar.setTitle("Test title");
     actionBar.setHomeAction(new IntentAction(this, HomeActivity.createIntent(this), R.drawable.ic_title_home_default));
-    actionBar.addAction(new IntentAction(this, createShareIntent(), R.drawable.ic_title_share_default));
-    actionBar.addAction(new ToastAction());
+    actionBar.addAction(new IntentAction(this, createShareIntent(), R.drawable.ic_share));
 
 ### Custom actions
 
@@ -40,7 +41,6 @@ ActionBar comes with a convenient IntentAction that makes it easy to create acti
             Toast.makeText(OtherActivity.this,
                     "Example action", Toast.LENGTH_SHORT).show();
         }
-
     }
 
 ### Handle on click on the title
@@ -55,11 +55,16 @@ To handle on clicks on the title pass a `android.view.View.OnClickListener` to t
 
 ### Customization
 
-You can change everything in this project.
+You can change everything in this project: java code, icons, colors, layouts...
 
 ## Is it stable?
 
-Yes it is, but there's no guarantees. The api however is still not stable so please check all commits since the last pull. It might also be an good idea to depend on your own fork instead of this component directly. Eventually there will be more controlled releases but until then.
+Yes, but there's no guarantees.
+
+## Version History
+
+* Rev 1:Fixed click bug, added subtitle change functions.
+* Rev 1 RC1:First release
 
 ## Contributions
 
@@ -72,10 +77,11 @@ This widget wouldn't be the same without the excellent contributions by;
 * Jake Wharton, <https://github.com/JakeWharton>
 * Jesse Vincent, <http://blog.fsck.com>
 * Gyuri Grell, <http://gyurigrell.com>
+* Johan Nilsson, <https://github.com/johannilsson/android-actionbar>
 
 ### Want to contribute?
 
-GitHub has some great articles on [how to get started with Git and GitHub](http://help.github.com/) and how to [fork a project](http://help.github.com/forking/).
+GitHub has some great articles on [how to get started with Git and GitHub](http://help.github.com/) and how to [fork a project](https://help.github.com/articles/fork-a-repo).
 
 Contributers are recommended to fork the app on GitHub (but don't have too). Create a feature branch, push the branch to git hub, press Pull Request and write a simple explanation.
 
@@ -89,6 +95,7 @@ Contributers are recommended to follow the Android [Code Style Guidelines](http:
 
 In short that is;
 
+* Commentaries: comment all functions of the code!
 * Indentation: 4 spaces, no tabs.
 * Line length: 80 columns
 * Field names: Non-public, non-static fields start with m.
@@ -99,7 +106,7 @@ In short that is;
 Have fun and remember we do this in our spare time so don't be too serious :)
 
 ## License
-Copyright (c) 2012 STALKER_2010
+Copyright (c) 2013 STALKER_2010. Sorry for my bad English, I'm Russian.
 
 Copyright (c) 2010 [Johan Nilsson](http://markupartist.com)
 

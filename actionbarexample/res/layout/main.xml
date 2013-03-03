@@ -20,7 +20,7 @@
 			<TextView
 				android:layout_width="fill_parent" 
 				android:layout_height="wrap_content" 
-				android:text="Home activity" 
+				android:text="Home activity of ActionBarExtended example app" 
 			/>
 	        <Button
 	            android:id="@+id/start_progress"
@@ -74,6 +74,18 @@
 				android:id="@+id/add_inter_action"
 				android:layout_width="wrap_content"
 				android:text="Add Interface Action"
+	            style="@style/Button"
+				android:layout_height="wrap_content" />
+			<Button
+				android:id="@+id/set_title"
+				android:layout_width="wrap_content"
+				android:text="Set title"
+	            style="@style/Button"
+				android:layout_height="wrap_content" />
+			<Button
+				android:id="@+id/set_subtitle"
+				android:layout_width="wrap_content"
+				android:text="Set subtitle"
 	            style="@style/Button"
 				android:layout_height="wrap_content" />
 	    </LinearLayout>

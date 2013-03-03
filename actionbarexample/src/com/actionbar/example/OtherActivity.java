@@ -18,26 +18,27 @@ public class OtherActivity extends Activity {
         setContentView(R.layout.other);
 
         ActionBar actionBar = (ActionBar) findViewById(R.id.actionbar);
-        // You can also assign the title programmatically by passing a
+        // You can assign the title programmatically by passing a
         // CharSequence or resource id.
-        //actionBar.setTitle(R.string.some_title);
+        actionBar.setTitle("Second activity");
+		actionBar.setSubTitle("Subtitle 2");
         actionBar.setHomeAction(new IntentAction(this, HomeActivity.createIntent(this), R.drawable.ic_title_home_default));
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.addAction(new IntentAction(this, createShareIntent(), R.drawable.ic_title_share_default));
+        actionBar.addAction(new IntentAction(this, createShareIntent(), R.drawable.ic_share));
         actionBar.addAction(new ExampleAction());
     }
 
     private Intent createShareIntent() {
         final Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, "Shared from the ActionBar widget.");
+        intent.putExtra(Intent.EXTRA_TEXT, "ActionBarExtended - small and easy framework for new design of Android apps! github.com/STALKER2010/ActionBar");
         return Intent.createChooser(intent, "Share");
     }
 
     private class ExampleAction extends AbstractAction {
 
         public ExampleAction() {
-            super(R.drawable.ic_title_export_default);
+            super(R.drawable.ic_video);
         }
 
         @Override
