@@ -106,6 +106,7 @@ In short that is;
 Have fun and remember we do this in our spare time so don't be too serious :)
 
 ## License
+
 Copyright (c) 2013 STALKER_2010. Sorry for my bad English, I'm Russian.
 
 Copyright (c) 2010 [Johan Nilsson](http://markupartist.com)
