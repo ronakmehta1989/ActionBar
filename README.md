@@ -63,8 +63,21 @@ Yes, but there's no guarantees.
 
 ## Version History
 
-* Rev 1:Fixed click bug, added subtitle change functions.
-* Rev 1 RC1:First release
+* Rev 1: Fixed click bug, added subtitle change functions.
+* Rev 1 RC1: First release
+
+## Differences from ActionBar and ActionBarExtended
+
+* Animated buttons
+* Subtitle support
+* Holo style
+* Change visibility function
+* Long click buttons
+* Fixed warnings
+* Action: Open dialogs
+* Action: Buttons with OnClickListener
+* Action: Search field
+* Includes small icon library
 
 ## Contributions
 
