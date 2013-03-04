@@ -79,6 +79,11 @@ Yes, but there's no guarantees.
 * Action: Search field
 * Includes small icon library
 
+## TODO
+
+* "More" button
+* Normal "Search" button
+
 ## Contributions
 
 This widget wouldn't be the same without the excellent contributions by;
