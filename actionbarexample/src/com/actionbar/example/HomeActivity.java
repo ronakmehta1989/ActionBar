@@ -36,7 +36,8 @@ public class HomeActivity extends Activity implements OnActionClickListener
         actionBar.addAction(shareAction);
         final Action otherAction = new IntentAction(this, new Intent(this, OtherActivity.class), R.drawable.ic_forward);
         actionBar.addAction(otherAction);
-		actionBar.getMenu().addItem(new MenuItemButton() {
+        actionBar.getMenu();
+		/*actionBar.getMenu().addItem(new MenuItemButton() {
 				public void onClick(View w)
 				{
 					Toast.makeText(getApplicationContext(),"Clicked!",Toast.LENGTH_SHORT).show();
@@ -45,7 +46,7 @@ public class HomeActivity extends Activity implements OnActionClickListener
 				{
 					return "Test";
 				}
-		});
+		});*/
 
         Button startProgress = (Button) findViewById(R.id.start_progress);
         startProgress.setOnClickListener(new OnClickListener() {

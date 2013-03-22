@@ -5,7 +5,6 @@ import android.view.animation.Animation.*;
 import android.widget.*;
 import android.util.*;
 import android.content.*;
-import android.os.*;
 import android.view.animation.*;
 import java.util.*;
 
@@ -13,10 +12,13 @@ public class Menu extends RelativeLayout implements View.OnClickListener
 {
 	private LinearLayout mItemsView;
 	private LayoutInflater mInflater;
+	@SuppressWarnings("unused")
+	private Context mCon;
 
 	public Menu(Context con,AttributeSet attr)
 	{
 		super(con,attr);
+		mCon = con;
         mInflater = (LayoutInflater) con.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		mItemsView = (LinearLayout)findViewById(R.id.dropdown_foldout_menu);
 	}
@@ -126,19 +128,19 @@ public class Menu extends RelativeLayout implements View.OnClickListener
      * Adds a new {@link Action}.
      * @param action the action to add
      */
-    public void addItem(MenuItem action)
+    public void addItem(MenuItem item)
 	{
         final int index = mItemsView.getChildCount();
-		addItem(action, index);
+		addItem(item, index);
     }
     /**
      * Adds a new {@link Action} at the specified index.
      * @param action the action to add
      * @param index the position at which to add the action
      */
-    public void addItem(MenuItem action, int index)
+    public void addItem(MenuItem item, int index)
 	{
-        mItemsView.addView(inflateAction(action), index);
+        mItemsView.addView(inflateAction(item), index);
     }
     /**
      * Removes all action views from this action bar
@@ -167,7 +169,7 @@ public class Menu extends RelativeLayout implements View.OnClickListener
      * @param action
      * @param visibility
      */
-    public void setItemVisibility(MenuItem action, int visibility)
+    public void setItemVisibility(MenuItem item, int visibility)
 	{
 		int childCount = mItemsView.getChildCount();
 		for (int i = 0; i < childCount; i++)
@@ -176,7 +178,7 @@ public class Menu extends RelativeLayout implements View.OnClickListener
 			if (view != null)
 			{
 				final Object tag = view.getTag();
-				if (tag instanceof MenuItem && tag.equals(action))
+				if (tag instanceof MenuItem && tag.equals(item))
 				{
 					view.setVisibility(visibility);
 					break;
@@ -217,13 +219,13 @@ public class Menu extends RelativeLayout implements View.OnClickListener
      * @param action the action to inflate
      * @return a view
      */
-	private View inflateAction(MenuItem action)
+	private View inflateAction(MenuItem item)
 	{
 		//Toast.makeText(getContext(),action.toString(),Toast.LENGTH_SHORT).show();
 		View view = mInflater.inflate(R.layout.actionbar_dropdown_item, mItemsView, false);
 		TextView labelView = (TextView) view.findViewById(R.id.ab_dropdown_item);
-		labelView.setText(action.getName());
-		view.setTag(action);
+		labelView.setText(item.getName());
+		view.setTag(item);
 		view.setOnClickListener(this);
 		return view;
 	}

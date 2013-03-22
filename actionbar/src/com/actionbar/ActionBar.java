@@ -440,6 +440,10 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
 		{
             return mDrawable;
         }
+        public String getName()
+		{
+            return mName;
+        }
     }
 	/** Action with intent
      */
@@ -460,6 +464,10 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
             mContext = context;
             mIntent = intent;
 			mName = name;
+        }
+        public String getName()
+		{
+            return mName;
         }
         @Override
         public void performAction(View view)
@@ -673,7 +681,6 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
 				mAnimatedView. clearAnimation();
 			}
 		}
-		@Override
 		public View onInflateView(ActionBar actionBar, View view)
 		{
 			mAnimatedView = (ImageButton) view. findViewById(R. id . actionbar_item);
@@ -691,7 +698,6 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
 				mClickListener. onClick(view);
 			}
 		}
-		@Override
 		public int getLayoutResId()
 		{
 			return R. layout. animated_actionbar_item ;
