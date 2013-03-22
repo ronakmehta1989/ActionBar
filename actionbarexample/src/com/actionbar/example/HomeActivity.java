@@ -3,6 +3,7 @@ package com.actionbar.example;
 import com.actionbar.ActionBar;
 import com.actionbar.ActionBar.*;
 import com.actionbar.*;
+import com.actionbar.Menu.*;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,8 +14,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import com.actionbar.Toast;
 import android.app.*;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.*;
-import android.view.*;
 import android.content.*;
 
 public class HomeActivity extends Activity implements OnActionClickListener
@@ -34,6 +36,16 @@ public class HomeActivity extends Activity implements OnActionClickListener
         actionBar.addAction(shareAction);
         final Action otherAction = new IntentAction(this, new Intent(this, OtherActivity.class), R.drawable.ic_forward);
         actionBar.addAction(otherAction);
+		actionBar.getMenu().addItem(new MenuItemButton() {
+				public void onClick(View w)
+				{
+					Toast.makeText(getApplicationContext(),"Clicked!",Toast.LENGTH_SHORT).show();
+				}
+				public String getName()
+				{
+					return "Test";
+				}
+		});
 
         Button startProgress = (Button) findViewById(R.id.start_progress);
         startProgress.setOnClickListener(new OnClickListener() {

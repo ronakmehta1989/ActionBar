@@ -74,10 +74,25 @@ limitations under the License.
 			android:layout_height= "@dimen/actionbar_height"
 			android:layout_alignParentRight= "true"
 			android:layout_centerVertical= "true"
-			android:layout_margin= "0dp"
 			android:padding= "0dp"
-			android:background= "@color/actionbar_separator"
-		/>
+			android:layout_margin= "0dp"
+			android:background= "@color/actionbar_separator">
+			<com.actionbar.Menu
+				android:id= "@+id/actionbar_more"
+				style= "@style/ActionBarItem"
+				android:layout_width= "wrap_content"
+				android:layout_height= "@dimen/actionbar_height"
+				android:layout_alignParentRight= "true"
+				android:layout_margin= "0dp"
+				android:padding= "0dp"
+				android:layout_centerVertical= "true"
+				android:background= "@drawable/actionbar_btn"
+				android:layout_toRightOf= "@id/actionbar_actions"
+				android:singleLine= "true"
+				android:visibility= "visible"
+				android:src="@drawable/actionbar_more"
+				android:layout_marginLeft= "0dp" />
+		</LinearLayout>
 		<RelativeLayout
 			android:layout_width= "fill_parent"
 			android:layout_height= "wrap_content"
@@ -98,6 +113,7 @@ limitations under the License.
 				style= "@style/ActionBarProgressBar"
 			/>
 			<LinearLayout
+				android:id="@+id/actionbar_titles"
 				android:layout_width= "wrap_content"
 				android:layout_height= "wrap_content"
 				android:orientation="vertical"
@@ -133,4 +149,14 @@ limitations under the License.
 			</LinearLayout>
 		</RelativeLayout>
 	</RelativeLayout>
+	<LinearLayout
+        android:id="@+id/dropdown_foldout_menu"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dropdown_textview"
+        android:layout_marginTop="2dip"
+        android:background="@drawable/dropdown_background"
+        android:orientation="vertical"
+        android:padding="1dip"
+        android:visibility="gone" />
 </RelativeLayout>

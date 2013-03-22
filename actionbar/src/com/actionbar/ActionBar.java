@@ -39,6 +39,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.app.Activity;
 import android.util.*;
+import android.view.*;
 
 public class ActionBar extends RelativeLayout implements OnClickListener,View.OnLongClickListener
 {
@@ -53,10 +54,9 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
     private ImageButton mHomeBtn;
     private RelativeLayout mHomeLayout;
     private ProgressBar mProgress;
+	private LinearLayout mTitlesLayout;
+	private Menu mMenu;
 	/** ActionBar Extended version by STALKER_2010
-     *
-     * @param context Context for action bar
-     * @param attrs Attributes for action bar
      */
     public ActionBar(Context context, AttributeSet attrs)
 	{
@@ -70,8 +70,10 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
         mBackIndicator = mBarView.findViewById(R.id.actionbar_home_is_back);
         mTitleView = (TextView) mBarView.findViewById(R.id.actionbar_title);
         mSubTitleView = (TextView) mBarView.findViewById(R.id.actionbar_subtitle);
+        mTitlesLayout = (LinearLayout) mBarView.findViewById(R.id.actionbar_titles);
         mActionsView = (LinearLayout) mBarView.findViewById(R.id.actionbar_actions);
         mProgress = (ProgressBar) mBarView.findViewById(R.id.actionbar_progress);
+		mMenu = (com.actionbar.Menu)mBarView.findViewById(R.id.actionbar_more);
         TypedArray a = context.obtainStyledAttributes(attrs,
 													  R.styleable.ActionBar);
         CharSequence title = a.getString(R.styleable.ActionBar_actionbar_title);
@@ -81,6 +83,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
         }
         a.recycle();
 		mSubTitleView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 0);
+		mSubTitleView.setHeight(0);
     }
 	/** Set home button action
      *
@@ -121,6 +124,14 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
     public void setDisplayHomeAsUpEnabled(boolean show)
 	{
         mBackIndicator.setVisibility(show ? View.VISIBLE : View.GONE);
+    }
+	/** Set Action Bar theme
+     *
+     * @param title New theme
+     */
+    public void setTheme(int theme)
+	{
+        //mBarView.setTheme(theme);
     }
 	/** Set Action Bar title
      *
@@ -204,7 +215,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
      */
     public void setOnTitleClickListener(OnClickListener listener)
 	{
-        mTitleView.setOnClickListener(listener);
+        mTitlesLayout.setOnClickListener(listener);
     }
 	/** OnClick listener
      *
@@ -218,7 +229,9 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
 		{
             final Action action = (Action) tag;
             action.performAction(view);
-        }
+        } else if (tag instanceof com.actionbar.Menu) {
+			
+		}
     }
     /**
      * Adds a list of {@link Action}s.
@@ -238,8 +251,32 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
      */
     public void addAction(Action action)
 	{
-        final int index = mActionsView.getChildCount();
-        addAction(action, index);
+        final int index = mActionsView.getChildCount()-1;
+		Integer size = ((WindowManager)getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getWidth()/105;
+		if (index < size - 1)
+		{
+			addAction(action, index);
+		} else {
+			final Action thisAction = action;
+			mMenu.addItem(new Menu.MenuItem() {
+					public void onClick(View w)
+					{
+						thisAction.performAction(w);
+					}
+					public String getName()
+					{
+						return "Menu Item";
+					}
+					public void setName(String name)
+					{
+						// TODO: Implement this method
+					}
+			});
+		}
+    }
+	public Menu getMenu()
+	{
+        return mMenu;
     }
     /**
      * Adds a new {@link Action} at the specified index.
@@ -265,7 +302,7 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
 	{
 		try
 		{
-			mActionsView.removeViewAt(index);
+			mActionsView.removeViewAt(index-1);
 		}
 		catch (Exception e)
 		{
@@ -387,9 +424,16 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
     public static abstract class AbstractAction implements Action
 	{
         final private int mDrawable;
+		final private String mName;
+        public AbstractAction(int drawable, String name)
+		{
+            mDrawable = drawable;
+			mName = name;
+        }
         public AbstractAction(int drawable)
 		{
             mDrawable = drawable;
+			mName = "";
         }
         @Override
         public int getDrawable()
@@ -403,11 +447,19 @@ public class ActionBar extends RelativeLayout implements OnClickListener,View.On
 	{
         private Context mContext;
         private Intent mIntent;
+		private String mName;
         public IntentAction(Context context, Intent intent, int drawable)
 		{
             super(drawable);
             mContext = context;
             mIntent = intent;
+        }
+        public IntentAction(Context context, Intent intent, int drawable, String name)
+		{
+            super(drawable);
+            mContext = context;
+            mIntent = intent;
+			mName = name;
         }
         @Override
         public void performAction(View view)
